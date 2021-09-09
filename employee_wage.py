@@ -1,15 +1,21 @@
 import random
 
-wage_per_hour = 20
+WAGE_PER_HOUR = 20
+FULL_TIME = 8
+PART_TIME = 4
+
+
+def emp_check(argument):
+    switcher = {
+        0:
+            "Employee worked full time and the wage is " + str(WAGE_PER_HOUR * FULL_TIME),
+        1:
+            "Employee worked part time and the wage is " + str(WAGE_PER_HOUR * PART_TIME),
+        2:
+            "Employee is absent"
+    }
+    return switcher.get(argument, "nothing")
+
+
 attendance = random.randint(0, 2)
-if attendance == 0:
-    print("Employee worked full time")
-    hours_worked = 8
-elif attendance == 1:
-    print("Employee worked part time")
-    hours_worked = 4
-else:
-    print("Employee is Absent")
-    hours_worked = 0
-wage = wage_per_hour * hours_worked
-print("Employee wage ", wage)
+print(emp_check(attendance))
