@@ -3,19 +3,24 @@ import random
 WAGE_PER_HOUR = 20
 FULL_TIME = 8
 PART_TIME = 4
+TOTAL_WORKING_DAYS = 20
 
 
-def emp_check(argument):
-    switcher = {
+def calculate_wage():
+    emp_attendance = {
         0:
-            "Employee worked full time and the wage is " + str(WAGE_PER_HOUR * FULL_TIME),
+            FULL_TIME,
         1:
-            "Employee worked part time and the wage is " + str(WAGE_PER_HOUR * PART_TIME),
+            PART_TIME,
         2:
-            "Employee is absent"
+            0
     }
-    return switcher.get(argument, "nothing")
+    days_worked = 0
+    while days_worked < TOTAL_WORKING_DAYS:
+        attendance = random.randint(0, 2)
+        days_worked = days_worked + emp_attendance.get(attendance)
+    return WAGE_PER_HOUR * days_worked
 
 
-attendance = random.randint(0, 2)
-print(emp_check(attendance))
+total_wage = calculate_wage()
+print("Total employee wage ", total_wage)
