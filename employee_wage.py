@@ -1,4 +1,4 @@
-import random
+from py_compile import main
 
 WAGE_PER_HOUR = 20
 FULL_TIME = 8
@@ -10,19 +10,26 @@ TOTAL_WORKING_HOURS = 100
 def calculate_wage():
     emp_attendance = {
         0:
-            FULL_TIME,
+            0,
         1:
-            PART_TIME,
+            FULL_TIME,
         2:
-            0
+            PART_TIME
     }
-    days_worked = 0
-    hours_worked = 0
-    while days_worked < TOTAL_WORKING_DAYS and hours_worked < TOTAL_WORKING_HOURS :
-        attendance = random.randint(0, 2)
-        hours_worked = hours_worked + emp_attendance.get(attendance)
 
-    return WAGE_PER_HOUR * hours_worked
+    if __name__ == "__main__":
+        main()
+        days_worked = 0
+        hours_worked = 0
+        while days_worked < TOTAL_WORKING_DAYS and hours_worked < TOTAL_WORKING_HOURS:
+            try:
+                attendance = int(input("Enter the attendance 0.Absent 1.Full- time 2. Part-time \n"))
+                hours_worked = hours_worked + emp_attendance.get(attendance)
+                days_worked = days_worked + 1
+            except ValueError:
+                print("Please enter a valid input")
+
+        return WAGE_PER_HOUR * hours_worked
 
 
 total_wage = calculate_wage()
