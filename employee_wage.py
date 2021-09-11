@@ -1,5 +1,3 @@
-from py_compile import main
-
 WAGE_PER_HOUR = 20
 FULL_TIME = 8
 PART_TIME = 4
@@ -29,9 +27,7 @@ class Employee:
         return WAGE_PER_HOUR * hours_worked
 
 
-emp = Employee()
-
 if __name__ == "__main__":
-    main()
-total_wage = emp.calculate_wage()
-print("Total employee wage ", total_wage)
+    emp = Employee()
+    total_wage = emp.calculate_wage()
+    print("Total employee wage ", total_wage)
