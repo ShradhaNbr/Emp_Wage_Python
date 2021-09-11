@@ -26,9 +26,8 @@ def calculate_wage():
                 attendance = int(input("Enter the attendance 0.Absent 1.Full- time 2. Part-time \n"))
                 hours_worked = hours_worked + emp_attendance.get(attendance)
                 days_worked = days_worked + 1
-            except ValueError:
+            except:
                 print("Please enter a valid input")
-
         return WAGE_PER_HOUR * hours_worked
 
 
