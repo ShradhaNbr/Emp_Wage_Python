@@ -8,7 +8,8 @@ PART_TIME = 4
 
 
 class Employee:
-    def calculate_wage(self):
+    @staticmethod
+    def calculate_wage():
         emp_attendance = {
             0:
                 0,
@@ -24,7 +25,7 @@ class Employee:
             total_working_hours = int(input("Enter total number of working hours\n"))
             if total_working_days > 30 or total_working_hours > 250:
                 raise ValueTooLargeError
-            elif total_working_days < 5 or total_working_hours < 10:
+            elif total_working_days < 5 or total_working_hours < 50:
                 raise ValueTooSmallError
             while days_worked < total_working_days and hours_worked < total_working_hours:
                 attendance = random.randint(0, 2)
