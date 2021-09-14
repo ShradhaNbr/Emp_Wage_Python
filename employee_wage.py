@@ -2,14 +2,15 @@ import random
 
 from exception import ValueTooLargeError, ValueTooSmallError
 
-WAGE_PER_HOUR = 20
-FULL_TIME = 8
-PART_TIME = 4
-
-
 class Employee:
-    @staticmethod
-    def calculate_wage():
+
+    def __init__(self,wage_per_hour):
+        self.wage_per_hour=wage_per_hour
+        # self.company = company
+
+    def calculate_wage(self):
+        FULL_TIME = 8
+        PART_TIME = 4
         emp_attendance = {
             0:
                 0,
@@ -31,16 +32,16 @@ class Employee:
                 attendance = random.randint(0, 2)
                 hours_worked = hours_worked + emp_attendance.get(attendance)
                 days_worked = days_worked + 1
+                total_wage = self.wage_per_hour * hours_worked
+            print("Total employee wage ", total_wage)
         except ValueError:
             print("Please enter a valid input !!!")
         except ValueTooLargeError:
             print("Value is too large. Please enter a smaller value")
         except ValueTooSmallError:
             print("Value is too small. Please enter a larger value")
-        return WAGE_PER_HOUR * hours_worked
-
 
 if __name__ == "__main__":
-    emp = Employee()
-    total_wage = emp.calculate_wage()
-    print("Total employee wage ", total_wage)
+    emp = Employee(20)
+    emp.calculate_wage()
+
