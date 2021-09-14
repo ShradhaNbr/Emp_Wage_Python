@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69570725-7840-4896-a012-b8440d82cde0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/employee_wage.py" beforeDir="false" afterPath="$PROJECT_DIR$/employee_wage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +78,7 @@
       <workItem from="1631167247537" duration="17187000" />
       <workItem from="1631337618777" duration="13918000" />
       <workItem from="1631511258536" duration="18502000" />
-      <workItem from="1631595341199" duration="7209000" />
+      <workItem from="1631595341199" duration="14249000" />
     </task>
     <servers />
   </component>
@@ -85,6 +86,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/pythonProject2$EmployeeWage.coverage" NAME="EmployeeWage Coverage Results" MODIFIED="1631605639577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject2$EmployeeWage.coverage" NAME="EmployeeWage Coverage Results" MODIFIED="1631616247566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
