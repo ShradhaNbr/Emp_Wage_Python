@@ -1,5 +1,8 @@
 import random
 import logging
+
+FULL_DAY_HOURS = 8
+PART_TIME_HOURS = 4
 from exception import ValueTooLargeError, ValueTooSmallError
 
 logging.basicConfig(
@@ -9,49 +12,74 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 
-class Employee:
-
-
-    def __init__(self,wage_per_hour,company):
-        self.wage_per_hour=wage_per_hour
+class Company:
+    def __init__(self, wage_per_hour, company):
+        self.wage_per_hour = wage_per_hour
         self.company = company
 
-    def calculate_wage(self):
-        FULL_TIME = 8
-        PART_TIME = 4
+    def set_total_wage(self, total_wage):
+        self.total_wage = total_wage
+
+    def __str__(self) -> str:
+        return f"Total Employee Wage for {self.company} is  {self.total_wage}"
+
+
+class Employee:
+    def __init__(self):
+        self.company_array = []
+
+    def add_employee(self, wage_per_hour, company):
+        self.company_array.append(Company(wage_per_hour, company))
+
+    @staticmethod
+    def calculate_daily_wage(wage_per_hour, emp_hrs):
+        return emp_hrs * wage_per_hour
+
+    @staticmethod
+    def check_emp_working_hours(check_emp):
         emp_attendance = {
-            0:
-                0,
-            1:
-                FULL_TIME,
-            2:
-                PART_TIME
+            0: 0,
+            1: FULL_DAY_HOURS,
+            2: PART_TIME_HOURS
         }
-        days_worked = 0
-        hours_worked = 0
+        return emp_attendance.get(check_emp)
+
+    def calculate_employee_salary(self, employee):
+        working_days = 0
+        total_working_hours = 0
+        total_wage = 0
         try:
-            total_working_days = int(input("Enter total number of working days\n"))
-            total_working_hours = int(input("Enter total number of working hours\n"))
-            if total_working_days > 30 or total_working_hours > 250:
+            number_of_working_days = int(input("Enter total number of working days\n"))
+            work_hrs_per_month = int(input("Enter total number of working hours\n"))
+            if number_of_working_days > 30 or work_hrs_per_month > 250:
                 raise ValueTooLargeError
-            elif total_working_days < 5 or total_working_hours < 50:
+            elif number_of_working_days < 5 or work_hrs_per_month < 50:
                 raise ValueTooSmallError
-            while days_worked < total_working_days and hours_worked < total_working_hours:
+            while working_days < number_of_working_days and total_working_hours < work_hrs_per_month:
                 attendance = random.randint(0, 2)
-                hours_worked = hours_worked + emp_attendance.get(attendance)
-                days_worked = days_worked + 1
-                total_wage = self.wage_per_hour * hours_worked
-            print("Total employee wage for ", self.company, "is", total_wage)
+                emp_hrs = Employee().check_emp_working_hours(attendance)
+                total_working_hours += emp_hrs
+                working_days += 1
+                total_wage += self.calculate_daily_wage(emp_hrs, employee.wage_per_hour)
+            return total_wage
         except ValueError:
-            log.error("Please enter a valid input !!!")
+            logging.error("Please enter a valid input !!!")
         except ValueTooLargeError:
             log.warning("Value is too large. Please enter a smaller value")
         except ValueTooSmallError:
             log.warning("Value is too small. Please enter a larger value")
 
-if __name__ == "__main__":
-    company1 = Employee(30,"TCS")
-    company2 = Employee(20, "Infosys")
-    company1.calculate_wage()
-    company2.calculate_wage()
 
+    def calculate_employee_wage(self):
+        for employee in self.company_array:
+            total_wage = self.calculate_employee_salary(employee)
+            Company.set_total_wage(employee, total_wage)
+
+
+if __name__ == "__main__":
+    emp_wage = Employee()
+    emp_wage.add_employee(20, "TCS")
+    emp_wage.add_employee(30, "Infosys")
+    emp_wage.calculate_employee_wage()
+    employees = "\n".join(str(employee) for employee in emp_wage.company_array)
+    print(employees)
