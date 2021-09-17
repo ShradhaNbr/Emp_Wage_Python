@@ -1,16 +1,18 @@
 import random
 import logging
-
+import pandas as pd
+from exception import ValueTooLargeError, ValueTooSmallError
 FULL_DAY_HOURS = 8
 PART_TIME_HOURS = 4
-from exception import ValueTooLargeError, ValueTooSmallError
 
 logging.basicConfig(
-    filename = "employee_wage.log",
-    filemode = 'w',
-    level=logging.INFO
+    filename="employee_wage.log",
+    filemode='w',
+    level=logging.INFO,
+    format="%(levelname)s:%(message)s"
 )
 log = logging.getLogger()
+
 
 class Company:
     def __init__(self, wage_per_hour, company):
@@ -69,7 +71,6 @@ class Employee:
         except ValueTooSmallError:
             log.warning("Value is too small. Please enter a larger value")
 
-
     def calculate_employee_wage(self):
         for employee in self.company_array:
             total_wage = self.calculate_employee_salary(employee)
@@ -78,8 +79,10 @@ class Employee:
 
 if __name__ == "__main__":
     emp_wage = Employee()
-    emp_wage.add_employee(20, "TCS")
-    emp_wage.add_employee(30, "Infosys")
+    df = pd.read_csv("C:\\Users\\HP\\PycharmProjects\\EmployeeWage\\emp_wage.csv")
+    print(df)
+    # emp_wage.add_employee(20, "TCS")
+    # emp_wage.add_employee(30, "Infosys")
     emp_wage.calculate_employee_wage()
     employees = "\n".join(str(employee) for employee in emp_wage.company_array)
     print(employees)
